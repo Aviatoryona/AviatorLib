@@ -1,8 +1,8 @@
 <?php
 
 /*
- * Version  :   3.1
- * Updated  :   27/07/2019 21:14pm
+ * Version  :   3.3
+ * Updated  :   15/08/2019 17:18pm
  */
 
 /*
@@ -316,7 +316,7 @@ abstract class Aviator {
 
         if ($isCookie) {
             if (isset($_COOKIE["$param"])) {
-                return self::Av_sanitize($_COOKIE["$param"]);
+                return $_COOKIE["$param"];
             }
             return null;
         }
@@ -444,6 +444,15 @@ abstract class Aviator {
                 return 0;
         }
         //return compact('miles', 'feet', 'yards', 'kilometers', 'meters');
+    }
+
+    /*
+     * Returns Array
+     */
+
+    public static function Av_DecodeJSON($jsonString, $is_array = true) {
+        $array = json_decode($jsonString, $is_array);
+        return is_array($array) ? $array : null;
     }
 
 }
